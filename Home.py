@@ -269,9 +269,9 @@ if st.session_state.run_optimization:
 
                 # Battery SOC Logic
                 if h == 0:
-                    model += soc[h] == soc_initial + (p_ch[h] * bat_eff) - (p_dis[h] / bat_eff)
+                    model += soc[h] == soc_initial + (p_ch[h] * bat_eff) - (p_dis[h] * (1 / bat_eff))
                 else:
-                    model += soc[h] == soc[h-1] + (p_ch[h] * bat_eff) - (p_dis[h] / bat_eff)
+                    model += soc[h] == soc[h-1] + (p_ch[h] * bat_eff) - (p_dis[h] * (1 / bat_eff))
         
         # Time Window Constraints
         for dev in load_power.keys():
